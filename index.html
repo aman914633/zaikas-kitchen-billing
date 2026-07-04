@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAIKA'S KITCHEN Billing</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <h1>🍽️ ZAIKA'S KITCHEN</h1>
+  <p>Fast & Easy Billing</p>
+</header>
+
+<main class="container">
+
+<section class="menu">
+
+<h2>Menu</h2>
+
+<div id="menuContainer">
+<!-- Menu will appear here -->
+</div>
+
+</section>
+
+<section class="bill">
+
+<h2>🧾 बिल</h2>
+
+<div id="billItems"></div>
+
+<h2>
+कुल बिल :
+₹ <span id="total">0</span>
+</h2>
+
+<input
+id="paid"
+type="number"
+placeholder="ग्राहक ने कितने रुपये दिए?"
+>
+
+<div class="quick">
+
+<button onclick="quickPay(10)">10</button>
+<button onclick="quickPay(20)">20</button>
+<button onclick="quickPay(50)">50</button>
+<button onclick="quickPay(100)">100</button>
+<button onclick="quickPay(200)">200</button>
+<button onclick="quickPay(500)">500</button>
+
+</div>
+
+<h2>
+वापस देने हैं :
+₹ <span id="change">0</span>
+</h2>
+
+<div class="actions">
+
+<button onclick="newBill()">
+🆕 नया बिल
+</button>
+
+<button onclick="completeBill()">
+✅ बिल पूरा
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
