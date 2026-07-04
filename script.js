@@ -55,3 +55,64 @@ updateBill();
 }
 
 //
+// ===== Quantity Support =====
+let cart = {};
+
+function addItem(index) {
+    const item = menu[index];
+
+    if (!cart[item.name]) {
+        cart[item.name] = {
+            ...item,
+            qty: 0
+        };
+    }
+
+    cart[item.name].qty++;
+    renderBill();
+}
+
+function renderBill() {
+
+    billItems.innerHTML = "";
+
+    total = 0;
+
+    Object.values(cart).forEach(item => {
+
+        total += item.price * item.qty;
+
+        billItems.innerHTML += `
+        <div style="display:flex;justify-content:space-between;margin:8px 0;">
+            <span>${item.icon} ${item.name} x ${item.qty}</span>
+            <span>₹${item.price * item.qty}</span>
+        </div>
+        `;
+
+    });
+
+    totalSpan.innerText = total;
+
+    calculateChange();
+
+}
+
+function calculateChange() {
+
+    let paid = Number(paidInput.value) || 0;
+
+    let change = paid - total;
+
+    if(change>=0){
+
+        changeSpan.style.color="green";
+        changeSpan.innerText=change;
+
+    }else{
+
+        changeSpan.style.color="red";
+        changeSpan.innerText="बाकी ₹"+Math.abs(change);
+
+    }
+
+}
