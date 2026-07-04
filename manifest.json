@@ -1,0 +1,10 @@
+{
+  "name": "ZAIKA'S KITCHEN Billing",
+  "short_name": "Zaika Billing",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6b00",
+  "orientation": "portrait",
+  "icons": []
+}
