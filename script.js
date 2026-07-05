@@ -1,118 +1,88 @@
-// ===== ZAIKA'S KITCHEN MENU =====
-
-const menu = [
- {name:"Poha",price:30,icon:"🍛"},
- {name:"Chai",price:12,icon:"☕"},
- {name:"Black Tea",price:14,icon:"🫖"},
- {name:"Coffee",price:16,icon:"☕"},
- {name:"Rice Plate",price:80,icon:"🍚"},
- {name:"Chicken Thali",price:150,icon:"🍗"},
- {name:"Egg Curry",price:120,icon:"🥚"},
- {name:"Extra Rice",price:15,icon:"🍚"},
- {name:"Extra Chapati",price:6,icon:"🫓"},
- {name:"Extra Bhaji",price:15,icon:"🥘"},
- {name:"Extra Dal",price:12,icon:"🥣"},
- {name:"Butter Chapati",price:10,icon:"🧈"}
-];
-
-let bill = [];
-let total = 0;
-
-const menuContainer = document.getElementById("menuContainer");
-const billItems = document.getElementById("billItems");
-const totalSpan = document.getElementById("total");
-const paidInput = document.getElementById("paid");
-const changeSpan = document.getElementById("change");
-
-// Create Menu
-menu.forEach((item,index)=>{
-
-const card=document.createElement("div");
-card.className="card";
-
-card.innerHTML=`
-<h3>${item.icon} ${item.name}</h3>
-<div class="price">₹${item.price}</div>
-<button class="addBtn" onclick="addItem(${index})">
-➕ Add
-</button>
-`;
-
-menuContainer.appendChild(card);
-
-});
-
-// Add Item
-
-function addItem(index){
-
-bill.push(menu[index]);
-
-total+=menu[index].price;
-
-updateBill();
-
+.quickButtons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:20px;
 }
 
-//
-// ===== Quantity Support =====
-let cart = {};
-
-function addItem(index) {
-    const item = menu[index];
-
-    if (!cart[item.name]) {
-        cart[item.name] = {
-            ...item,
-            qty: 0
-        };
-    }
-
-    cart[item.name].qty++;
-    renderBill();
+.quickButtons button{
+    background:#1976d2;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:14px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-function renderBill() {
-
-    billItems.innerHTML = "";
-
-    total = 0;
-
-    Object.values(cart).forEach(item => {
-
-        total += item.price * item.qty;
-
-        billItems.innerHTML += `
-        <div style="display:flex;justify-content:space-between;margin:8px 0;">
-            <span>${item.icon} ${item.name} x ${item.qty}</span>
-            <span>₹${item.price * item.qty}</span>
-        </div>
-        `;
-
-    });
-
-    totalSpan.innerText = total;
-
-    calculateChange();
-
+.changeBox{
+    margin-top:20px;
+    background:#fff8f0;
+    border:2px solid #ffb366;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
 }
 
-function calculateChange() {
+.changeBox h3{
+    color:#0a8f2d;
+    font-size:24px;
+}
 
-    let paid = Number(paidInput.value) || 0;
+.actionButtons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:20px;
+}
 
-    let change = paid - total;
+.completeBtn{
+    background:#28a745;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+}
 
-    if(change>=0){
+.newBtn{
+    background:#dc3545;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+}
 
-        changeSpan.style.color="green";
-        changeSpan.innerText=change;
+button{
+    transition:.2s;
+}
 
-    }else{
+button:active{
+    transform:scale(.96);
+}
 
-        changeSpan.style.color="red";
-        changeSpan.innerText="बाकी ₹"+Math.abs(change);
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
 
-    }
+@media(max-width:600px){
+
+.menuGrid{
+grid-template-columns:1fr;
+}
+
+.header h1{
+font-size:26px;
+}
+
+.row{
+font-size:20px;
+}
 
 }
